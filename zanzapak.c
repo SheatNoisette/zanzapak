@@ -24,16 +24,14 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#include "zanzapak.h"
+
 #ifdef WIN32
     #include <direct.h>
 
 #else
     #include <unistd.h>
 #endif
-
-typedef unsigned char   u_char;
-typedef unsigned int   u_int;
-
 
 
 #define VER         "0.1"
@@ -44,18 +42,6 @@ typedef unsigned int   u_int;
 #define FGETS       if(!fgets(buff, sizeof(buff) - 1, fdl)) read_err(); \
                     for(p = buff; *p > '\r'; p++); \
                     *p = 0;
-
-
-
-void unpack(u_char *input, u_char *outdir, u_char *list);
-void pack(u_char *list, u_char *indir, u_char *output);
-void getfile(FILE *fdin, u_char *fname, u_int size);
-void putfile(u_char *fname, FILE *fdout, u_int size);
-u_char *create_dir(u_char *name);
-void read_err(void);
-void write_err(void);
-void std_err(void);
-
 
 
 int main(int argc, char *argv[]) {
@@ -104,12 +90,10 @@ int main(int argc, char *argv[]) {
     return(0);
 }
 
-
-
-void unpack(u_char *input, u_char *outdir, u_char *list) {
+void unpack(char *input, char *outdir, char *list) {
     FILE    *fd,
             *fdl;
-    u_int  i,
+    int  i,
             id,
             attr,
             num,
@@ -118,7 +102,7 @@ void unpack(u_char *input, u_char *outdir, u_char *list) {
             size,
             curroff,
             headsize;
-    u_char  buff[NAMESZ],   // bof? not important
+    char  buff[NAMESZ],   // bof? not important
             *p;
 
     printf("- open input PAK file:       %s\n", input);
@@ -183,11 +167,11 @@ void unpack(u_char *input, u_char *outdir, u_char *list) {
 
 
 
-void pack(u_char *list, u_char *indir, u_char *output) {
+void pack(char *list, char *indir, char *output) {
     struct  stat    xstat;
     FILE    *fd,
             *fdl;
-    u_int  id,
+    int  id,
             attr,
             num,
             name,
@@ -195,7 +179,7 @@ void pack(u_char *list, u_char *indir, u_char *output) {
             size,
             curroff,
             headsize;
-    u_char  buff[NAMESZ],   // bof? not important
+    char  buff[NAMESZ],   // bof? not important
             *fname,
             *p;
 
@@ -278,10 +262,10 @@ void pack(u_char *list, u_char *indir, u_char *output) {
 
 
 
-void getfile(FILE *fdin, u_char *fname, u_int size) {
+void getfile(FILE *fdin, char *fname, int size) {
     FILE    *fdout;
     int     len;
-    u_char  buff[BUFFSZ];
+    char  buff[BUFFSZ];
 
     fdout = fopen(fname, "wb");
     if(!fdout) std_err();
@@ -297,10 +281,10 @@ void getfile(FILE *fdin, u_char *fname, u_int size) {
 
 
 
-void putfile(u_char *fname, FILE *fdout, u_int size) {
+void putfile(char *fname, FILE *fdout, int size) {
     FILE    *fdin;
     int     len;
-    u_char  buff[BUFFSZ];
+    char  buff[BUFFSZ];
 
     fdin = fopen(fname, "rb");
     if(!fdin) std_err();
@@ -316,8 +300,8 @@ void putfile(u_char *fname, FILE *fdout, u_int size) {
 
 
 
-u_char *create_dir(u_char *name) {
-    u_char  *stri,
+char *create_dir(char *name) {
+    char  *stri,
             *strf;
 
     if(!memcmp(name, "..\\", 3)) name += 3;
