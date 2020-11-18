@@ -5,7 +5,9 @@ Portal.
 
 Original work by [Luigi Auriemma](aluigi.org)
 
-Using the steam version of the game, you get the MD5 hash for DATA_0.pak:
+# Hashes
+
+MD5 hash of DATA_0.pak, Steam version:
 
 `0bc1510fb886b545de578f2281328ed9`
 
