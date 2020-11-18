@@ -7,6 +7,7 @@ BIN = bin/zanzapak.x86_64
 all: zanzapak
 
 zanzapak: $(OBJ)
+	@mkdir -p bin
 	$(CC) $^ -o $(BIN)
 
 clean:
