@@ -4,6 +4,8 @@ tests/
 bin/
 .vscode/
 .vs/
+Release/
+Debug/
 
 # Prerequisites
 *.d
