@@ -18,6 +18,10 @@
     http://www.gnu.org/licenses/gpl.txt
 */
 
+#ifdef WIN32
+#pragma warning(disable:4996)
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

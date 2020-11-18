@@ -1,6 +1,9 @@
 # Project
 zanzapak
 tests/
+bin/
+.vscode/
+.vs/
 
 # Prerequisites
 *.d
