@@ -1,5 +1,6 @@
 /*
     Copyright 2005,2006 Luigi Auriemma
+    Copyright 2021 SheatNoisette
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -32,7 +33,6 @@
 
 #ifdef WIN32
     #include <direct.h>
-
 #else
     #include <unistd.h>
 #endif
