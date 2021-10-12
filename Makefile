@@ -1,4 +1,4 @@
-CFLAGS = -W -Wall -Wextra -Werror -std=c99
+CFLAGS = -W -Wall -Wextra -Werror -m64 -O2 -std=c99
 LDFLAGS =
 
 OBJ = src/zanzapak.o
